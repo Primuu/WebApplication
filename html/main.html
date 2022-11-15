@@ -1,0 +1,86 @@
+<head>
+    <title>Historia lotów kosmicznych</title>
+    <link href="./css/main.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./js/timedate.js" type="text/javascript"></script>
+</head>
+<body onload="startclock()">
+    <div class="menu-btn">
+        <i class="fas fa-bars"></i>
+    </div>
+    <div class="side-bar">
+        <div class="close-btn">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="menu">
+            <div class="item">
+                <a href="?idp=gallery">
+                    <i class="fas fa-camera"></i>
+                    Galeria
+                </a>
+            </div>
+            <div class="item">
+                <a class="sub-btn">
+                    <i class="fas fa-message"></i>
+                    Newsy
+                    <i class="fas fa-angle-right dropdown"></i>
+                </a>
+                <div class="sub-menu">
+                    <a href="?idp=elon1810" class="sub-item">
+                        Elon Musk nie leci!
+                    </a>
+                    <a href="#" class="sub-item">
+                        Elon Musk leci!
+                    </a>
+                    <a href="#" class="sub-item">
+                        Elon Musk nie leci!
+                    </a>
+                </div>
+            </div>
+            <div class="item">
+                <a href="?idp=facts">
+                    <i class="fas fa-star"></i>
+                    Ciekawostki
+                </a>
+            </div>
+            <div class="item">
+                <a href="?idp=history">
+                    <i class="fas fa-rocket"></i>
+                    Historia Lotów
+                </a>
+            </div>
+            <div class="item">
+                <a href="?idp=movies">
+                    <i class="fas fa-video"></i>
+                    Filmy
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="clock">
+        <b>
+            <div id="zegarek"></div>
+            <div id="data"></div>  
+        </b>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.sub-btn').click(function(){
+                $(this).next('.sub-menu').slideToggle();
+                $(this).find('.dropdown').toggleClass('rotate');
+            });
+
+            $('.menu-btn').click(function(){
+                $('.side-bar').addClass('active');
+                $('.menu-btn').css("visibility", "hidden");
+            });
+    
+            $('.close-btn').click(function(){
+                $('.side-bar').removeClass('active');
+                $('.menu-btn').css("visibility", "visible");
+            });
+        });
+    </script>
+</body>
+
