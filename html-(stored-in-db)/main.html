@@ -1,11 +1,4 @@
-<head>
-    <title>Historia lotów kosmicznych</title>
-    <link href="./css/main.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="./js/timedate.js" type="text/javascript"></script>
-</head>
-<body onload="startclock()">
+<body class="main-body" onload="startclock()">
     <div class="menu-btn">
         <i class="fas fa-bars"></i>
     </div>
@@ -15,7 +8,7 @@
         </div>
         <div class="menu">
             <div class="item">
-                <a href="?idp=gallery">
+                <a href="?idp=4">
                     <i class="fas fa-camera"></i>
                     Galeria
                 </a>
@@ -27,7 +20,7 @@
                     <i class="fas fa-angle-right dropdown"></i>
                 </a>
                 <div class="sub-menu">
-                    <a href="?idp=elon1810" class="sub-item">
+                    <a href="?idp=5" class="sub-item">
                         Elon Musk nie leci!
                     </a>
                     <a href="#" class="sub-item">
@@ -39,19 +32,19 @@
                 </div>
             </div>
             <div class="item">
-                <a href="?idp=facts">
+                <a href="?idp=3">
                     <i class="fas fa-star"></i>
                     Ciekawostki
                 </a>
             </div>
             <div class="item">
-                <a href="?idp=history">
+                <a href="?idp=6">
                     <i class="fas fa-rocket"></i>
                     Historia Lotów
                 </a>
             </div>
             <div class="item">
-                <a href="?idp=movies">
+                <a href="?idp=7">
                     <i class="fas fa-video"></i>
                     Filmy
                 </a>
@@ -64,6 +57,7 @@
             <div id="data"></div>  
         </b>
     </div>
+    
     <script type="text/javascript">
         $(document).ready(function(){
             $('.sub-btn').click(function(){
