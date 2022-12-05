@@ -40,6 +40,15 @@ header {
     padding: 17px 20px;
     text-decoration: none;
   }
+
+  .topnav li button {
+    display: block;
+    color: white;
+    font-size: large;
+    text-align: center;
+    padding: 17px 20px;
+    text-decoration: none;
+  }
   
   .topnav a:hover {
     background-color: rgb(43, 40, 40);
@@ -210,6 +219,37 @@ header {
     font-size: 50px;
   }
 
+  input[type=text], input[type=password] {
+    width: 100%;
+    padding: 6px 10px;
+    margin: 4px 0;
+    display: inline-block;
+    border: 2px solid #ccc;
+    box-sizing: border-box;
+  }
+
+  .logout {
+    width: 100%;
+    margin: 4px 0;
+    background-color: rgb(34, 38, 43);
+    border: 2px solid #ccc;
+    padding: 10px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  .zaloguj {
+    width: 100%;
+    padding: 3px 5px;
+    margin: 4px 0;
+    display: inline-block;
+    border: 2px solid #ccc;
+    box-sizing: border-box;
+  }
+
   .history-h1 {
     text-align: center;
     padding: 15px;
@@ -298,6 +338,49 @@ header {
     border-collapse: collapse;
     width: auto;
     margin: auto;
+  }
+
+  .cms-table {
+    background-color: #412fe4;
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 3%;
+  }
+  
+  .cms-td {
+    text-align: center;
+    border: 1px solid rgb(217, 236, 245);
+  }
+
+  .cms-tr{
+    text-align: center;
+  }
+
+  .cms-span {
+    font-size: xx-large;
+  }
+
+  .cms-editor {
+    font-size: 20px;
+  }
+
+  .cms-h2 {
+    margin: auto;
+    text-align: center;
+    padding: 15px;
+    font-size: 30px;
+  }
+
+  .cms-button {
+    height: 60px;
+    width: 200px;
+    font-size: 20px;
+  }
+
+  .cms-button-table {
+    height: 60px;
+    width: 50vw;
+    font-size: 20px;
   }
 
   th {

@@ -1,8 +1,15 @@
 <?php
+    session_start();
+    error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
+
     include('cfg.php');
     include('showpage.php');
-    error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
+    include('./admin/admin.php');
+
     (empty($_GET['idp'])) ? $pageId = 1 : $pageId = $_GET['idp'];
+    
+    ($_SESSION['loggedIn'] == 0 && $pageId == 999) ? $pageId = 1 : $pageId;
+
     $title = PokazTytul($link, $pageId);
 ?>
 <!DOCTYPE html>
@@ -40,7 +47,18 @@
         </ul> 
     </header>
     <?php
+
         PokazPodstrone($link, $pageId);
+        
+        if ($pageId == 1) 
+        {
+            echo(FormularzLogowania());
+        }
+        if ($pageId == 999)
+        {
+            panelAdministracyjny();
+        }
+        
     ?>
     <div class="identifier">
             <?php
