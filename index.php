@@ -5,6 +5,7 @@
     include('cfg.php');
     include('showpage.php');
     include('./admin/admin.php');
+    include('contact.php');
 
     (empty($_GET['idp'])) ? $pageId = 1 : $pageId = $_GET['idp'];
     
@@ -42,7 +43,7 @@
                 <a href="?idp=3">Ciekawostki</a>
             </li>
             <li class="navbar-right">
-                <a href="mailto:162602@student.uwm.edu.pl">Kontakt</a>
+                <a href="?idp=998">Kontakt</a>
             </li>
         </ul> 
     </header>
@@ -57,6 +58,10 @@
         if ($pageId == 999)
         {
             panelAdministracyjny();
+        }
+        if ($pageId == 998)
+        {
+            panelKontaktowy();
         }
         
     ?>

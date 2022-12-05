@@ -15,6 +15,7 @@
 
     $login = 'admin';
     $pass = 'admin';
+    $admin_mail = "testowy.mail.www@gmail.com";
 
     $username = $_POST['login_email'];
     $password = $_POST['login_pass'];
