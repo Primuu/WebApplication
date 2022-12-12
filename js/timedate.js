@@ -1,3 +1,7 @@
+//--------------------------------------//
+// Wyswietlanie biezacej godziny i daty //
+//-------------------------------------//
+
 function gettheDate()
 {
     Todays = new Date();

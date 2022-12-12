@@ -1,10 +1,19 @@
 <?php
+
+    // Pakiet funkcji, wlaczajacych pokazywanie bledow oraz ostrzezen, przydatny w testowaniu
+
     // Enabling warnings and errors
-    
     // error_reporting(-1);
     // ini_set('display_errors', 'On');
     // set_error_handler("var_dump");
 
+
+    //-----------------------------------------//
+    // Funkcja pokazujaca formularz kontaktowy //
+    //-----------------------------------------//
+    //
+    // Funkcja generuje i wyswietla tabele html - formularz kontaktowy
+    //
     function pokazKontakt(){
         $contact_table = 
         "
@@ -26,9 +35,14 @@
             </form>
         ";
         echo($contact_table);
-        
     }
 
+    //--------------------------------------------------//
+    // Funkcja pokazujaca formularz przypomnienia hasla //
+    //--------------------------------------------------//
+    //
+    // Funkcja generuje i wyswietla tabele html - formularz przypomnienia hasla
+    //
     function przypomnijHasloKontakt(){
         $contact_pass_table = 
         "
@@ -44,9 +58,16 @@
             </form>
         ";
         echo($contact_pass_table);
-        
     }
 
+    //--------------------------//
+    // Funkcja wysylajaca maile //
+    //--------------------------//
+    //
+    // Funkcja wspolpracuje z funkcja " pokazKontakt() "
+    // Funkcja pobiera w argumencie adres e-mail do administratora
+    // i wysyla mail, wypelniony trescia z formularza kontaktowego (funkcji " pokazKontakt() ")
+    //
     function wyslijMailKontakt($odbiorca){
 
         if (empty($_POST['temat']) || empty($_POST['tresc']) || empty($_POST['email']))
@@ -67,6 +88,8 @@
             $header .= "X-Priority: 3\n";
             $header .= "Return-Path: <".$mail['sender']."\n";
 
+            // Warunki do testowania, czy mail zostal wyslany
+
             // if(mail($mail['reciptient'], $mail['subject'], $mail['body'], $header)){
             //     echo("Wiadomość wysłana");
             // }
@@ -80,6 +103,14 @@
         }
     }
 
+    //-----------------------------------//
+    // Funkcja wysylajaca maile z haslem //
+    //-----------------------------------//
+    //
+    // Funkcja wspolpracuje z funkcja " przypomnijHasloKontakt() "
+    // Funkcja wysyla mail z haslem do konta administratora na adres,
+    // podany w formularzu do przypominania hasla (funkcji " przypomnijHasloKontakt() ")
+    //
     function przypomnijHaslo(){
 
         include('cfg.php');
@@ -102,6 +133,8 @@
             $header .= "X-Priority: 3\n";
             $header .= "Return-Path: <".$mail['sender']."\n";
 
+            // Warunki do testowania, czy mail zostal wyslany
+
             // if(mail($mail['reciptient'], $mail['subject'], $mail['body'], $header)){
             //     echo("Wiadomość wysłana");
             // }
@@ -115,6 +148,14 @@
         }
     }
 
+    //-------------------------------------------//
+    // Funkcja obslugujaca formularze kontaktowe //
+    //-------------------------------------------//
+    //
+    // Funkcja wspolpracuje z funkcjami " pokazKontakt() " i " przypomnijHasloKontakt() "
+    // Funkcja wyswietla formularz kontaktowy oraz formularz do przypomnienia hasla
+    // i obsluguje przyciski wysylania maili oraz wysyla (badz nie) maile
+    //
     function panelKontaktowy(){
 
         include('cfg.php');
@@ -128,6 +169,7 @@
                 wyslijMailKontakt($admin_mail);
                 exit;
             }
+
             if(isset($_POST['emailPass'])) {
                 przypomnijHaslo();
                 exit;

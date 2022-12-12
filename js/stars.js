@@ -1,3 +1,7 @@
+//-----------------------------------------------//
+// Wyswietlanie animowanych "spadajacych" gwiazd //
+//-----------------------------------------------//
+
 function stars(){
     let count = 40;
     let scene = document.querySelector('.scene');

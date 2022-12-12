@@ -1,5 +1,7 @@
 <?php
+
     session_start();
+    // Wywietlenie bledow oraz ostrzezen
     error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
 
     include('cfg.php');
@@ -7,8 +9,10 @@
     include('./admin/admin.php');
     include('contact.php');
 
+    // Domyslne przyjecie id podstorony jako idp=1
     (empty($_GET['idp'])) ? $pageId = 1 : $pageId = $_GET['idp'];
     
+    // Jesli uzytkownik nie jest zalogowany, panel administracyjny nie pokaze mu sie
     ($_SESSION['loggedIn'] == 0 && $pageId == 999) ? $pageId = 1 : $pageId;
 
     $title = PokazTytul($link, $pageId);
@@ -31,6 +35,7 @@
         <script src="./js/timedate.js" type="text/javascript"></script>
         <script src="./js/stars.js" type="text/javascript"></script>
     </head>
+    <!-- Pasek nawigacyjny -->
     <header>
         <ul class="topnav">
             <li class="navbar-left">
@@ -47,24 +52,32 @@
             </li>
         </ul> 
     </header>
+
     <?php
 
         PokazPodstrone($link, $pageId);
         
+        // Wyswietlenie formularza logowania na stronie glownej
         if ($pageId == 1) 
         {
             echo(FormularzLogowania());
         }
+
+        // Wyswietlenie panelu administracyjnego
         if ($pageId == 999)
         {
             panelAdministracyjny();
         }
+
+        // Wyswietlenie panelu kontaktowego      
         if ($pageId == 998)
         {
             panelKontaktowy();
         }
         
     ?>
+    
+    <!-- Identyfikator -->
     <div class="identifier">
             <?php
                 $nr_indeksu = '162602';
