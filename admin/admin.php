@@ -10,18 +10,30 @@
     {
         include('cfg.php');
 
-        // Jesli uzytkowni nie jest zalogowany, zostaje wyswietlony mu formularz logowania
+        // Jesli uzytkownik nie jest zalogowany, zostaje wyswietlony mu formularz logowania
         if($_SESSION['loggedIn'] != 1) {
 
         $wynik = '
         <div>
-            <h1 class="heading">Logowanie:</h1>
+            <h1>Logowanie:</h1>
             <div>
-                <form method="post" name="LoginForm" enctype="multipart/form-data" action="'.$_SERVER['REQUEST_URI'].'">
+                <form method="post" enctype="multipart/form-data" action="'.$_SERVER['REQUEST_URI'].'">
                     <table>
-                        <tr><td class="log4_t"></td><td><input type="text" placeholder="Podaj login" name="login_email"/></td></tr>
-                        <tr><td class="log4_t"></td><td><input type="password" placeholder="Podaj hasło" name="login_pass"/></td></tr>
-                        <tr><td>&nbsp;</td><td><input type="submit" name="x1_submit" class="zaloguj" value="Zaloguj" /></td></tr>
+                        <tr>
+                            <td>
+                                <input class="login" type="text" placeholder="Login" name="login_login"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input class="login" type="password" placeholder="Hasło" name="login_pass"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="submit" class="zaloguj" value="Zaloguj" />
+                            </td>
+                        </tr>
                     </table>
                 </form>
             </div>
@@ -31,15 +43,40 @@
         return $wynik;
         }
 
-        // Jesli uzytkowni jest zalogowany, zostaje wyswietlony mu panel uzytkownika (przycisk panelu administratora, przycisk wylogowania)
+        // Jesli uzytkowni jest zalogowany, zostaje wyswietlony mu panel uzytkownika (przycisk panelu administratora, panelu zarządzania sklepem, przycisk wylogowania)
         if($_SESSION['loggedIn'] == 1) {
             $wynik = '
             <div>
-                <h1 class="heading">Panel:</h1>
+                <h1>Opcje</h1>
                 <div>
                     <table>
-                        <tr><td><button class="logout"><a href="?idp=999">Panel Administracyjny</a></button></td></tr>
-                        <tr><td><button class="logout"><a href="./admin/logout.php">Wyloguj</a></button></td></tr>
+                        <tr>
+                            <td>
+                                <button class="admin-button">
+                                    <a href="?idp=999">
+                                    Panel Administracyjny
+                                    </a>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button class="admin-button">
+                                    <a href="?idp=1000">
+                                    Panel Sklepu
+                                    </a>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button class="admin-button">
+                                    <a href="./admin/logout.php">
+                                    Wyloguj
+                                    </a>
+                                </button>
+                            </td>
+                        </tr>
                     </table>
                 </div>
             </div>
@@ -71,13 +108,19 @@
             <table class='cms-table'>
                 <tr>
                     <td class='cms-td' style='width: 8%;'>
-                        <span class='cms-span'>Id strony</span>
+                        <span class='cms-span'>
+                        Id strony
+                        </span>
                     </td>
                     <td class='cms-td' style='width: 10%;'>
-                        <span class='cms-span'>Tytuł</span>
+                        <span class='cms-span'>
+                        Tytuł
+                        </span>
                     </td>
                     <td class='cms-td'>
-                        <span class='cms-span'>Zawartość (HTML)</span>
+                        <span class='cms-span'>
+                        Zawartość (HTML)
+                        </span>
                     </td>
                 </tr>
                 <tr>
@@ -88,17 +131,23 @@
             </table>        
 
             <div style='display: flex;'>
-            <form method='post'>
-                <input type='hidden' name='idPage' value='" . $id . "'/>
-                <input type='hidden' name='titlePage' value='" . $page_title . "'/>
-                <input type='hidden' name='contentPage' value='" . $page_content . "'/>
-                <button class='cms-button-table' type='submit'>Edytuj podstronę</button>
-            </form>
+                <form method='post'>
+                    <input type='hidden' name='idPage' value='" . $id . "'/>
+                    <input type='hidden' name='titlePage' value='" . $page_title . "'/>
+                    <input type='hidden' name='contentPage' value='" . $page_content . "'/>
 
-            <form method='post'>
-                <input type='hidden' name='idPageToDelete' value='" . $id . "'/>
-                <button class='cms-button-table' type='submit' name='delete' >Skasuj podstronę</button>
-            </form>
+                    <button class='cms-button-table' type='submit'>
+                    Edytuj podstronę
+                    </button>
+                </form>
+
+                <form method='post'>
+                    <input type='hidden' name='idPageToDelete' value='" . $id . "'/>
+                    
+                    <button class='cms-button-table' type='submit' name='delete' >
+                    Usuń podstronę
+                    </button>
+                </form>
             </div>
             ";
 
@@ -116,31 +165,37 @@
         $insert_table = 
         "
         <div style='margin-top: 120px;'>
-            <h2 class='cms-h2'>Dodaj nową podstronę:</h2>
+            <h2 class='cms-h2'>Dodaj nową podstronę</h2>
             <form method='post'>
-            <table class='cms-table'>
-                <thead>
-                    <th>
-                        <span class='cms-editor'>Tytuł podstrony</span>
-                    </th>
-                    <th>
-                        <span class='cms-editor'>Zawartość HTML</span>
-                    </th>
-                </thead>
-                <tbody>
-                    <tr class='cms-tr'>
-                        <td style='width: 30%;'>
-                            <input type='text' name='insertTitle'/>
-                        </td>
-                        <td style='height: 500px;'>
-                            <textarea style='height: 99%; width: 99%; margin-bottom: 10px;' name='insertContent'></textarea>
-                        </td>
-                    </tr>       
-                </tbody>
-            </table>
-            <div style='text-align: center;'>
-                <button class='cms-button' type='submit'>Dodaj Podstronę</button>
-            </div>
+                <table class='cms-table'>
+                    <thead>
+                        <th>
+                            <span class='cms-editor'>
+                            Tytuł podstrony
+                            </span>
+                        </th>
+                        <th>
+                            <span class='cms-editor'>
+                            Zawartość HTML
+                            </span>
+                        </th>
+                    </thead>
+                    <tbody>
+                        <tr class='cms-tr'>
+                            <td style='width: 30%;'>
+                                <input type='text' name='insertTitle'/>
+                            </td>
+                            <td style='height: 500px;'>
+                                <textarea style='height: 99%; width: 99%; margin-bottom: 10px;' name='insertContent'></textarea>
+                            </td>
+                        </tr>       
+                    </tbody>
+                </table>
+                <div style='text-align: center; margin-top: 10px;'>
+                    <button class='cms-button' type='submit'>
+                    Dodaj Podstronę
+                    </button>
+                </div>
             </form>
         </div>
         ";
@@ -166,37 +221,47 @@
         $update_table = 
         "
         <div>
-            <h2 class='cms-h2'>Edycja podstrony ''".$title."''   (id = ".$id.")</h2>
+            <h2 class='cms-h2'>
+            Edycja podstrony ''".$title."''   (id = ".$id.")
+            </h2>
             <form method='post'>
-            <table class='cms-table'>
-                <thead>
-                    <th>
-                        <span class='cms-editor'>Id podstrony</span>
-                    </th>
-                    <th>
-                        <span class='cms-editor'>Tytuł podstrony</span>
-                    </th>
-                    <th>
-                        <span class='cms-editor'>Zawartość HTML</span>
-                    </th>
-                </thead>
-                <tbody>
-                    <tr class='cms-tr'>
-                        <td style='width: 7%;'>
-                            <input style='height: 100%; width: 95%;' type='text' readonly value='".$id."' name='updateId'/>
-                        </td>
-                        <td style='width: 30%;'>
-                            <input type='text' value='".$title." 'name='updateTitle'/>
-                        </td>
-                        <td style='height: 500px;'>
-                            <textarea style='height: 99%; width: 99%; margin-bottom: 10px;' name='updateContent'>".$content." </textarea>
-                        </td>
-                    </tr>       
-                </tbody>
-            </table>
-            <div style='text-align: center;'>
-                <button class='cms-button' type='submit'>Zapisz Zmiany</button>
-            </div>
+                <table class='cms-table'>
+                    <thead>
+                        <th>
+                            <span class='cms-editor'>
+                            Id podstrony
+                            </span>
+                        </th>
+                        <th>
+                            <span class='cms-editor'>
+                            Tytuł podstrony
+                            </span>
+                        </th>
+                        <th>
+                            <span class='cms-editor'>
+                            Zawartość HTML
+                            </span>
+                        </th>
+                    </thead>
+                    <tbody>
+                        <tr class='cms-tr'>
+                            <td style='width: 7%;'>
+                                <input style='height: 100%; width: 95%;' type='text' readonly value='".$id."' name='updateId'/>
+                            </td>
+                            <td style='width: 30%;'>
+                                <input type='text' value='".$title." 'name='updateTitle'/>
+                            </td>
+                            <td style='height: 500px;'>
+                                <textarea style='height: 99%; width: 99%; margin-bottom: 10px;' name='updateContent'>".$content." </textarea>
+                            </td>
+                        </tr>       
+                    </tbody>
+                </table>
+                <div style='text-align: center; margin-top: 10px;'>
+                    <button class='cms-button' type='submit'>
+                    Zapisz Zmiany
+                    </button>
+                </div>
             </form>
         </div>
         ";
@@ -268,7 +333,7 @@
     //-------------------------------------------//
     //
     // Funkcja wspolpracuje z powyzszymi funkcjami cms'owymi
-    // Funkcja wyswietla panel administracyjny (liste podstron, edycje podstrony, dodanie nowej podstrony)
+    // Funkcja wyswietla panel administracyjny (liste podstron, edycje podstrony, dodanie nowej podstrony, usunięcia podstrony)
     //
     function panelAdministracyjny(){
         if($_SESSION['loggedIn'] == 1) {
@@ -280,10 +345,24 @@
                 if(isset($_POST['updateId'])) {
                     $result = queryUpdate();
                     if ($result == 1){
-                        echo("Sukces");
+                        ?>
+                            <div class="center-message">
+                        <?php
+
+                        echo("Pomyślnie edytowano podstronę");
+
+                        ?>
+                        <?php
                     }
                     else {
-                        echo("Niepowodzenie");
+                        ?>
+                        <div class="center-message">
+                        <?php
+
+                        echo("Niepowodzenie przy edycji podstrony");
+
+                        ?>
+                        <?php
                     }
                     exit;
                 }
@@ -291,10 +370,24 @@
                 if(isset($_POST['insertTitle'])) {
                     $result = queryInsert();
                     if ($result == 1){
-                        echo("Sukces");
+                        ?>
+                        <div class="center-message">
+                        <?php
+
+                        echo("Pomyślnie dodano podstronę");
+
+                        ?>
+                        <?php
                     }
                     else {
-                        echo("Niepowodzenie");
+                        ?>
+                        <div class="center-message">
+                        <?php
+
+                        echo("Niepowodzenie podczas dodawania podstrony");
+
+                        ?>
+                        <?php
                     }
                     exit;
                 }
@@ -302,10 +395,24 @@
                 if(isset($_POST['idPageToDelete'])) {
                     $result = queryDelete();
                     if ($result == 1){
-                        echo("Sukces");
+                        ?>
+                        <div class="center-message">
+                        <?php
+
+                        echo("Pomyślnie usunięto podstronę");
+
+                        ?>
+                        <?php
                     }
                     else {
-                        echo("Niepowodzenie");
+                        ?>
+                        <div class="center-message">
+                        <?php
+
+                        echo("Niepowodzenie podczas usuwania podstrony");
+
+                        ?>
+                        <?php
                     }
                     exit;
                 }
@@ -316,7 +423,14 @@
 
         }
         else {
-            echo "Dostęp tylko dla administratora";
+            ?>
+            <div class="center-message">
+            <?php
+
+            echo("Dostęp tylko dla administratora");
+
+            ?>
+            <?php
         }
     }
 

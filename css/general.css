@@ -123,18 +123,54 @@ table a {
   font-size: 25px;
 }
 
+.elon-h2 {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 25px;
+}
+
+.elon-h3 {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 60px;
+  font-weight: 300;
+}
+
 .elon-left {
   float: left;
   margin: 1%;
-  width: 900px;
-  height: 600px;
+  width: 600px;
+  height: 400px;
   border: 1px solid #dddddd;
 }
 
 .elon-right {
   float: right;
   margin: 1%;
+  width: 650px;
+  height: 430px;
   border: 1px solid #dddddd;
+}
+
+.elon-clown {
+  align-items: center;
+  border: 1px solid #dddddd;
+  display: block;
+  margin-top: 3%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ------------------------------ james webb - news ------------------------------ */
+
+.jw-p {
+  font-size: 20px;
+  text-align: center;
+}
+
+.jw-h2 {
+  text-align: center;
+  margin-top: 3%;
 }
 
 /* ------------------------------ css - history ------------------------------ */
@@ -362,7 +398,7 @@ input[type=text], input[type=password], textarea {
   resize: vertical;
 }
 
-.logout {
+.admin-button {
   width: 100%;
   margin: 4px 0;
   background-color: rgb(34, 38, 43);
@@ -376,12 +412,26 @@ input[type=text], input[type=password], textarea {
 }
 
 .zaloguj {
-  width: 100%;
-  padding: 3px 5px;
-  margin: 4px 0;
-  display: inline-block;
-  border: 2px solid #ccc;
-  box-sizing: border-box;
+    width: 100%;
+    padding: 3px 5px;
+    margin: 4px 0;
+    display: inline-block;
+    border: 2px solid #ccc;
+    box-sizing: border-box;
+    background-color: #18a2fd;
+    border-color: #0b629c;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    font-size: medium;
+  }
+
+  .zaloguj:hover {
+    background-color: #0e8add;
+    border-color: #0b629c;
+  }
+
+  .login {
+    background-color: #3da1e4;
   }
 
 .cms-table {
@@ -392,6 +442,12 @@ input[type=text], input[type=password], textarea {
 }
   
 .cms-td {
+  text-align: center;
+  border: 1px solid rgb(217, 236, 245);
+}
+
+.shop-td {
+  font-size: 30px;
   text-align: center;
   border: 1px solid rgb(217, 236, 245);
 }
@@ -432,6 +488,13 @@ input[type=text], input[type=password], textarea {
   width: 96%;
   background-color: #7465f8;
   padding: 20px;
+}
+
+.center-message{
+  margin-top: 10%;
+  text-align: center;
+  font-size: 100px;
+  font-weight: 600;
 }
 
 /* ------------------------------ animacje rakiety i spadajacych gwiazd w tle ------------------------------ */

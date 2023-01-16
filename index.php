@@ -8,14 +8,17 @@
     include('showpage.php');
     include('./admin/admin.php');
     include('contact.php');
+    include('./shop/categories.php');
 
     // Domyslne przyjecie id podstorony jako idp=1
     (empty($_GET['idp'])) ? $pageId = 1 : $pageId = $_GET['idp'];
     
-    // Jesli uzytkownik nie jest zalogowany, panel administracyjny nie pokaze mu sie
-    ($_SESSION['loggedIn'] == 0 && $pageId == 999) ? $pageId = 1 : $pageId;
+    // Jesli uzytkownik nie jest zalogowany, panel administracyjny/panel sklepu nie pokaze mu sie
+    ($_SESSION['loggedIn'] == 0 && $pageId == 999 ||
+     $_SESSION['loggedIn'] == 0 && $pageId == 1000) ? $pageId = 1 : $pageId;
 
     $title = PokazTytul($link, $pageId);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -73,6 +76,12 @@
         if ($pageId == 998)
         {
             panelKontaktowy();
+        }
+
+        // Wyswietlenie panelu zarządzania sklepem   
+        if ($pageId == 1000)
+        {
+            panelSklepu();
         }
         
     ?>

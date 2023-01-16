@@ -17,7 +17,7 @@
     function pokazKontakt(){
         $contact_table = 
         "
-        <h2 class='cms-h2'>Napisz nową wiadomość:</h2>
+        <h2 class='cms-h2'>Napisz nową wiadomość</h2>
         <div class='contact-form'>
             <form method='post'>
                 <label for='email'>Email</label>
@@ -46,7 +46,7 @@
     function przypomnijHasloKontakt(){
         $contact_pass_table = 
         "
-        <h2 class='cms-h2' style='margin-top: 100px;'>Przypomij hasło:</h2>
+        <h2 class='cms-h2' style='margin-top: 100px;'>Przypomij hasło</h2>
         <div class='contact-form'>
             <form method='post'>
                 <label for='emailPass'>Email</label>
@@ -72,7 +72,7 @@
 
         if (empty($_POST['temat']) || empty($_POST['tresc']) || empty($_POST['email']))
         {
-            echo("Nie wypełniłeś pola");
+            return 0;
         }
         else
         {
@@ -99,7 +99,8 @@
             // }
             
             mail($mail['reciptient'], $mail['subject'], $mail['body'], $header);
-            echo("Wiadomość wysłana");
+            return 1;
+
         }
     }
 
@@ -117,7 +118,7 @@
 
         if (empty($_POST['emailPass']))
         {
-            echo("Nie wypełniłeś pola");
+            return 0;
         }
         else
         {
@@ -144,7 +145,7 @@
             // }
 
             mail($mail['reciptient'], $mail['subject'], $mail['body'], $header);
-            echo("Wiadomość wysłana");
+            return 1;
         }
     }
 
@@ -159,22 +160,63 @@
     function panelKontaktowy(){
 
         include('cfg.php');
-
-        pokazKontakt();
-        przypomnijHasloKontakt();
         
         if ($_SERVER['REQUEST_METHOD'] == 'POST') 
         {
             if(isset($_POST['email'])) {
-                wyslijMailKontakt($admin_mail);
+                $result = wyslijMailKontakt($admin_mail);
+                if ($result == 1){
+                    ?>
+                    <div class="center-message">
+                    <?php
+
+                    echo("Pomyślnie wysłano wiadomość");
+
+                    ?>
+                    <?php
+                }
+                else {
+                    ?>
+                    <div class="center-message">
+                    <?php
+
+                    echo("Nie wypełniłeś pola 'email', 'treść' lub 'temat'");
+
+                    ?>
+                    <?php
+                }
                 exit;
             }
 
             if(isset($_POST['emailPass'])) {
-                przypomnijHaslo();
+                $result = przypomnijHaslo();
+                if ($result == 1){
+                    ?>
+                    <div class="center-message">
+                    <?php
+
+                    echo("Pomyślnie wysłano wiadomość przypominającą");
+
+                    ?>
+                    <?php
+                }
+                else {
+                    ?>
+                    <div class="center-message">
+                    <?php
+
+                    echo("Nie wypełniłeś pola 'email'");
+
+                    ?>
+                    <?php
+                }
                 exit;
             }
         }
+
+        pokazKontakt();
+        przypomnijHasloKontakt();
+
     }
 
 ?>

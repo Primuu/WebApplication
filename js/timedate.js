@@ -8,7 +8,7 @@ function gettheDate()
     TheDate = ""
     TheDate += (Todays.getDate() < 10) ? "0" + Todays.getDate() : Todays.getDate();
     TheDate += " / "
-    TheDate += (Todays.getMonth() < 10) ? "0" + Todays.getMonth() + 1 : Todays.getMonth() + 1;
+    TheDate += (Todays.getMonth() < 10) ? "" + Todays.getMonth() + 1 : Todays.getMonth() + 1;
     TheDate += " / "
     TheDate += (Todays.getYear() - 100);
     document.getElementById("data").innerHTML = TheDate;

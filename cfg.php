@@ -22,10 +22,10 @@
     $pass = 'admin';
 
     // Emial do kontaktu (tu sa kierowane maile z formularza kontaktowego)
-    $admin_mail = "testowy.mail.www@gmail.com";
+    $admin_mail = "testowy.mail.www@test.com";
 
     // Dane pobierane podczas proby zalogowania
-    $username = $_POST['login_email'];
+    $username = $_POST['login_login'];
     $password = $_POST['login_pass'];
 
     // Polaczenie z baza danych
