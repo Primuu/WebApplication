@@ -291,7 +291,7 @@
     // Funkcja wspolpracuje z powyzszymi funkcjami cms'owymi
     // Funkcja wyswietla panel zarządzania sklepem (liste kategorii, edycje kategorii, dodanie nowej kategorii, usunięcia kategorii)
     //
-    function panelSklepu(){
+    function panelKategorii(){
         if($_SESSION['loggedIn'] == 1) {
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {

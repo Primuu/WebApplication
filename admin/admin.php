@@ -43,7 +43,7 @@
         return $wynik;
         }
 
-        // Jesli uzytkowni jest zalogowany, zostaje wyswietlony mu panel uzytkownika (przycisk panelu administratora, panelu zarządzania sklepem, przycisk wylogowania)
+        // Jesli uzytkownik jest zalogowany, zostaje wyswietlony mu panel uzytkownika (przycisk panelu administratora, panelu zarządzania sklepem, przycisk wylogowania)
         if($_SESSION['loggedIn'] == 1) {
             $wynik = '
             <div>

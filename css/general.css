@@ -452,12 +452,37 @@ input[type=text], input[type=password], textarea {
   border: 1px solid rgb(217, 236, 245);
 }
 
+.product-td {
+  font-size: 10px;
+  text-align: center;
+  border: 1px solid rgb(217, 236, 245);
+}
+
+.pro-td {
+  font-size: 18px;
+  text-align: center;
+  border: 1px solid rgb(217, 236, 245);
+}
+
+.img-product {
+  align-items: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100px;
+  height: auto;
+}
+
 .cms-tr {
   text-align: center;
 }
 
 .cms-span {
   font-size: xx-large;
+}
+
+.pro-span {
+  font-size: large;
 }
 
 .cms-editor {
