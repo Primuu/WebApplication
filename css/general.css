@@ -440,6 +440,12 @@ input[type=text], input[type=password], textarea {
   width: 100%;
   margin-top: 3%;
 }
+
+.shop-table {
+  border-collapse: collapse;
+  width: 98%;
+  margin-top: 3%;
+}
   
 .cms-td {
   text-align: center;
@@ -450,6 +456,11 @@ input[type=text], input[type=password], textarea {
   font-size: 30px;
   text-align: center;
   border: 1px solid rgb(217, 236, 245);
+}
+
+.shop-list-td {
+  font-size: 30px;
+  text-align: center;
 }
 
 .product-td {

@@ -1,70 +1,5 @@
 <?php
 
-
-
-
-
-
-
-
-
-
-
-
-
-    // //---------------------------------------//
-    // // Funkcja wyswietlajaca liste kategorii //
-    // //---------------------------------------//
-    // //
-    // // Funkcja generuje liste wszystkich kategorii wraz z podkategoriami,
-    // // służy tylko do podglądu
-    // //
-    // function drzewkoKategorii() {
-    //     include('cfg.php');
-
-    //     $query = "SELECT `id`, `nazwa` FROM `kategorie` where `matka` = 0";
-    //     $main_categories = mysqli_query($link, $query);
-
-    //     $tree='
-    //     <div style="margin: auto; text-align: center; width: 25%;">
-    //         <h2 class="cms-h2">Pogląd drzewka kategorii:</h2> 
-    //     ';
-
-    //     while($row = mysqli_fetch_array($main_categories)) {
-    //         $id = $row['id'];
-    //         $motherCategoryName = $row['nazwa'];
-    //                 $tree = $tree .'
-    //                 <h3 style="margin-top: 10px; text-align: justify; font-size: 25px;">-'.$motherCategoryName.'</h3>
-    //                 ';
-            
-    //         $query = "SELECT `nazwa` FROM `kategorie` where `matka` = '$id'";
-    //         $sub_category = mysqli_query($link, $query);
-    //         while($row = mysqli_fetch_array($sub_category)) {
-    //             $sub_name = $row['nazwa'];
-    //             $tree = $tree .'
-    //             <h3 style="margin: auto; text-align: justify; font-size: 20px;">- - - '.$sub_name.'</h3>
-    //             ';
-    //         }
-
-    //     }
-    //     $tree .= '</div>';
-
-    //     echo $tree;
-    // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     //-------------------------------------------------------//
     // Funkcja wyswietlajaca liste do zarzadzania produktami //
     //-------------------------------------------------------//
@@ -543,7 +478,6 @@
                                         WHERE id=".$id." LIMIT 1";
         $result = mysqli_query($link, $query);
 
-        // echo($result);
         return $result;
     }
 

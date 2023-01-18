@@ -11,6 +11,7 @@
     include('./shop/categories.php');
     include('./shop/shop-panel.php');
     include('./shop/products.php');
+    include('./shop/shop.php');
 
     // Domyslne przyjecie id podstorony jako idp=1
     (empty($_GET['idp'])) ? $pageId = 1 : $pageId = $_GET['idp'];
@@ -53,6 +54,9 @@
             </li>
             <li class="navbar-left">
                 <a href="?idp=3">Ciekawostki</a>
+            </li>
+            <li class="navbar-left">
+                <a href="?idp=1003">Sklep</a>
             </li>
             <li class="navbar-right">
                 <a href="?idp=998">Kontakt</a>
@@ -98,6 +102,12 @@
         if ($pageId == 1002)
         {
             panelProduktow();
+        }
+
+        // Wyswietlenie sklepu
+        if ($pageId == 1003)
+        {
+            shop();
         }
         
     ?>
