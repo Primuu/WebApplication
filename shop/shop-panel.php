@@ -1,5 +1,6 @@
 <?php
 
+
     //---------------------------------//
     // Funkcja zwracajaca panel sklepu //
     //---------------------------------//
@@ -12,20 +13,17 @@
 
         // Jesli uzytkownik nie jest zalogowany, zostaje wyswietlony mu komunikat o dostepnosci
         if($_SESSION['loggedIn'] != 1) {
-
-            ?>
-            <div class="center-message">
-            <?php
-
-            echo("Dostęp tylko dla administratora");
-
-            ?>
-            <?php
+            echo "<script>";
+            echo 'alert("Widok tylko dla administratora.");';
+            echo "window.location.href = http://localhost/projekt/?idp=1;";
+            echo "</script>";
         }
 
         // Jesli uzytkownik jest zalogowany, zostaje wyswietlony mu panel zarzadzania sklepem
         if($_SESSION['loggedIn'] == 1) {
-            $wynik = '
+
+            // Stworzenie panelu z przyciskami
+            $panel = '
             <div>
                 <h1>Opcje</h1>
                 <div>
@@ -34,7 +32,7 @@
                             <td>
                                 <button class="admin-button" style="margin-top: 20px;">
                                     <a href="?idp=1001">
-                                    Zarządzaj Kategoriami
+                                        Zarządzaj Kategoriami
                                     </a>
                                 </button>
                             </td>
@@ -43,7 +41,7 @@
                             <td>
                                 <button class="admin-button" style="margin-top: 20px;">
                                     <a href="?idp=1002">
-                                    Zarządzaj Produktami
+                                        Zarządzaj Produktami
                                     </a>
                                 </button>
                             </td>
@@ -52,7 +50,9 @@
                 </div>
             </div>
             ';
-            echo($wynik);
+
+            // Wyswietlenie panelu
+            echo($panel);
         }
     }
 

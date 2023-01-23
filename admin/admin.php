@@ -54,7 +54,7 @@
                             <td>
                                 <button class="admin-button">
                                     <a href="?idp=999">
-                                    Panel Administracyjny
+                                        Panel Administracyjny
                                     </a>
                                 </button>
                             </td>
@@ -63,7 +63,7 @@
                             <td>
                                 <button class="admin-button">
                                     <a href="?idp=1000">
-                                    Panel Sklepu
+                                        Panel Sklepu
                                     </a>
                                 </button>
                             </td>
@@ -72,7 +72,7 @@
                             <td>
                                 <button class="admin-button">
                                     <a href="./admin/logout.php">
-                                    Wyloguj
+                                        Wyloguj
                                     </a>
                                 </button>
                             </td>
@@ -95,10 +95,10 @@
     function listaPodstron() {
 
         include('cfg.php');
-        $query = " SELECT * FROM page_list ";
+        $query = "SELECT * FROM page_list";
         $result = mysqli_query($link, $query);
         
-        while( $row = mysqli_fetch_array($result) ) {
+        while($row = mysqli_fetch_array($result)) {
             $id = $row['id'];
             $page_content = htmlspecialchars($row['page_content']);
             $page_title = $row['page_title'];
@@ -109,32 +109,32 @@
                 <tr>
                     <td class='cms-td' style='width: 8%;'>
                         <span class='cms-span'>
-                        Id strony
+                            Id strony
                         </span>
                     </td>
                     <td class='cms-td' style='width: 10%;'>
                         <span class='cms-span'>
-                        Tytuł
+                            Tytuł
                         </span>
                     </td>
                     <td class='cms-td'>
                         <span class='cms-span'>
-                        Zawartość (HTML)
+                            Zawartość (HTML)
                         </span>
                     </td>
                 </tr>
                 <tr>
-                    <td class='cms-td'>".$id."</td>
-                    <td class='cms-td'>".$page_title."</td>
-                    <td class='cms-td'>".$page_content."</td>        
+                    <td class='cms-td'>$id</td>
+                    <td class='cms-td'>$page_title</td>
+                    <td class='cms-td'>$page_content</td>        
                 </tr>
             </table>        
 
             <div style='display: flex;'>
                 <form method='post'>
-                    <input type='hidden' name='idPage' value='" . $id . "'/>
-                    <input type='hidden' name='titlePage' value='" . $page_title . "'/>
-                    <input type='hidden' name='contentPage' value='" . $page_content . "'/>
+                    <input type='hidden' name='idPage' value='".$id."'/>
+                    <input type='hidden' name='titlePage' value='".$page_title."'/>
+                    <input type='hidden' name='contentPage' value='".$page_content."'/>
 
                     <button class='cms-button-table' type='submit'>
                     Edytuj podstronę
@@ -142,7 +142,7 @@
                 </form>
 
                 <form method='post'>
-                    <input type='hidden' name='idPageToDelete' value='" . $id . "'/>
+                    <input type='hidden' name='idPageToDelete' value='".$id."'/>
                     
                     <button class='cms-button-table' type='submit' name='delete' >
                     Usuń podstronę
@@ -171,12 +171,12 @@
                     <thead>
                         <th>
                             <span class='cms-editor'>
-                            Tytuł podstrony
+                                Tytuł podstrony
                             </span>
                         </th>
                         <th>
                             <span class='cms-editor'>
-                            Zawartość HTML
+                                Zawartość HTML
                             </span>
                         </th>
                     </thead>
@@ -193,7 +193,7 @@
                 </table>
                 <div style='text-align: center; margin-top: 10px;'>
                     <button class='cms-button' type='submit'>
-                    Dodaj Podstronę
+                        Dodaj Podstronę
                     </button>
                 </div>
             </form>
@@ -216,7 +216,7 @@
 
         $id = $_POST['idPage'];
         $title = $_POST['titlePage'];
-        $content = htmlspecialchars($_POST['contentPage']);
+        $content = htmlspecialchars_decode($_POST['contentPage']);
 
         $update_table = 
         "
@@ -229,17 +229,17 @@
                     <thead>
                         <th>
                             <span class='cms-editor'>
-                            Id podstrony
+                                Id podstrony
                             </span>
                         </th>
                         <th>
                             <span class='cms-editor'>
-                            Tytuł podstrony
+                                Tytuł podstrony
                             </span>
                         </th>
                         <th>
                             <span class='cms-editor'>
-                            Zawartość HTML
+                                Zawartość HTML
                             </span>
                         </th>
                     </thead>
@@ -259,7 +259,7 @@
                 </table>
                 <div style='text-align: center; margin-top: 10px;'>
                     <button class='cms-button' type='submit'>
-                    Zapisz Zmiany
+                        Zapisz Zmiany
                     </button>
                 </div>
             </form>
@@ -279,10 +279,10 @@
     function queryInsert() {
         include('cfg.php');
 
-        $title = $_POST['insertTitle'];
-        $content = $_POST['insertContent'];
+        $title = htmlspecialchars($_POST['insertTitle']);
+        $content = htmlspecialchars($_POST['insertContent']);
 
-        $query = "INSERT INTO `page_list` (`id`, `page_title`, `page_content`, `status`) VALUES (NULL, '".$title."', '".htmlspecialchars($content)."', '1')";
+        $query = "INSERT INTO page_list (id, page_title, page_content, `status`) VALUES (NULL, '$title', '$content', 1)";
         $result = mysqli_query($link, $query);
 
         return $result;
@@ -299,11 +299,11 @@
     function queryUpdate() {
         include('cfg.php');
 
-        $id = $_POST['updateId'];
-        $title = $_POST['updateTitle'];
-        $content = $_POST['updateContent'];
+        $id = htmlspecialchars($_POST['updateId']);
+        $title = htmlspecialchars($_POST['updateTitle']);
+        $content = htmlspecialchars($_POST['updateContent']);
 
-        $query = "UPDATE `page_list` SET `page_title`='".$title."' , `page_content`=' ".htmlspecialchars($content)." ' WHERE `id`=".$id." LIMIT 1";
+        $query = "UPDATE page_list SET page_title='$title', page_content='$content' WHERE id=$id LIMIT 1";
         $result = mysqli_query($link, $query);
 
         return $result;
@@ -322,7 +322,7 @@
 
         $id = $_POST['idPageToDelete'];
 
-        $query = "DELETE FROM `page_list` WHERE id=$id LIMIT 1";
+        $query = "DELETE FROM page_list WHERE id=$id LIMIT 1";
         $result = mysqli_query($link, $query);
         
         return $result;
@@ -336,6 +336,9 @@
     // Funkcja wyswietla panel administracyjny (liste podstron, edycje podstrony, dodanie nowej podstrony, usunięcia podstrony)
     //
     function panelAdministracyjny(){
+
+        $location = "http://localhost/projekt/?idp=999";
+
         if($_SESSION['loggedIn'] == 1) {
 
             echo edytujPodstrone();
@@ -345,24 +348,16 @@
                 if(isset($_POST['updateId'])) {
                     $result = queryUpdate();
                     if ($result == 1){
-                        ?>
-                            <div class="center-message">
-                        <?php
-
-                        echo("Pomyślnie edytowano podstronę");
-
-                        ?>
-                        <?php
+                        echo "<script>";
+                        echo 'alert("Edytowano podstronę.");';
+                        echo "window.location.href = `$location`;";
+                        echo "</script>";
                     }
                     else {
-                        ?>
-                        <div class="center-message">
-                        <?php
-
-                        echo("Niepowodzenie przy edycji podstrony");
-
-                        ?>
-                        <?php
+                        echo "<script>";
+                        echo 'alert("Niepowodzenie podczas edycji podstrony.");';
+                        echo "window.location.href = `$location`;";
+                        echo "</script>";
                     }
                     exit;
                 }
@@ -370,24 +365,16 @@
                 if(isset($_POST['insertTitle'])) {
                     $result = queryInsert();
                     if ($result == 1){
-                        ?>
-                        <div class="center-message">
-                        <?php
-
-                        echo("Pomyślnie dodano podstronę");
-
-                        ?>
-                        <?php
+                        echo "<script>";
+                        echo 'alert("Dodano podstronę.");';
+                        echo "window.location.href = `$location`;";
+                        echo "</script>";
                     }
                     else {
-                        ?>
-                        <div class="center-message">
-                        <?php
-
-                        echo("Niepowodzenie podczas dodawania podstrony");
-
-                        ?>
-                        <?php
+                        echo "<script>";
+                        echo 'alert("Niepowodzenie podczas dodawania podstrony.");';
+                        echo "window.location.href = `$location`;";
+                        echo "</script>";
                     }
                     exit;
                 }
@@ -395,24 +382,16 @@
                 if(isset($_POST['idPageToDelete'])) {
                     $result = queryDelete();
                     if ($result == 1){
-                        ?>
-                        <div class="center-message">
-                        <?php
-
-                        echo("Pomyślnie usunięto podstronę");
-
-                        ?>
-                        <?php
+                        echo "<script>";
+                        echo 'alert("Usunięto podstronę.");';
+                        echo "window.location.href = `$location`;";
+                        echo "</script>";
                     }
                     else {
-                        ?>
-                        <div class="center-message">
-                        <?php
-
-                        echo("Niepowodzenie podczas usuwania podstrony");
-
-                        ?>
-                        <?php
+                        echo "<script>";
+                        echo 'alert("Niepowodzenie podczas usuwania podstrony.");';
+                        echo "window.location.href = `$location`;";
+                        echo "</script>";
                     }
                     exit;
                 }
@@ -423,14 +402,10 @@
 
         }
         else {
-            ?>
-            <div class="center-message">
-            <?php
-
-            echo("Dostęp tylko dla administratora");
-
-            ?>
-            <?php
+            echo "<script>";
+            echo 'alert("Widok tylko dla administratora.");';
+            echo "window.location.href = `$location`;";
+            echo "</script>";
         }
     }
 

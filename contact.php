@@ -160,30 +160,24 @@
     function panelKontaktowy(){
 
         include('cfg.php');
+
+        $location = "http://localhost/projekt/index.php?idp=998";
         
         if ($_SERVER['REQUEST_METHOD'] == 'POST') 
         {
             if(isset($_POST['email'])) {
                 $result = wyslijMailKontakt($admin_mail);
                 if ($result == 1){
-                    ?>
-                    <div class="center-message">
-                    <?php
-
-                    echo("Pomyślnie wysłano wiadomość");
-
-                    ?>
-                    <?php
+                    echo "<script>";
+                    echo 'alert("Wiadomosc wysłano.");';
+                    echo "window.location.href = `$location`;";
+                    echo "</script>";
                 }
                 else {
-                    ?>
-                    <div class="center-message">
-                    <?php
-
-                    echo("Nie wypełniłeś pola 'email', 'treść' lub 'temat'");
-
-                    ?>
-                    <?php
+                    echo "<script>";
+                    echo 'alert("Uzupełnij pole Email/Temat/Treść.");';
+                    echo "window.location.href = `$location`;";
+                    echo "</script>";
                 }
                 exit;
             }
@@ -191,24 +185,16 @@
             if(isset($_POST['emailPass'])) {
                 $result = przypomnijHaslo();
                 if ($result == 1){
-                    ?>
-                    <div class="center-message">
-                    <?php
-
-                    echo("Pomyślnie wysłano wiadomość przypominającą");
-
-                    ?>
-                    <?php
+                    echo "<script>";
+                    echo 'alert("Wiadomosc wysłano.");';
+                    echo "window.location.href = `$location`;";
+                    echo "</script>";
                 }
                 else {
-                    ?>
-                    <div class="center-message">
-                    <?php
-
-                    echo("Nie wypełniłeś pola 'email'");
-
-                    ?>
-                    <?php
+                    echo "<script>";
+                    echo 'alert("Uzupełnij pole Email.");';
+                    echo "window.location.href = `$location`;";
+                    echo "</script>";
                 }
                 exit;
             }

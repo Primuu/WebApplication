@@ -1,5 +1,6 @@
 <?php
 
+
     //-------------------------------------------------------//
     // Funkcja wyswietlajaca liste do zarzadzania produktami //
     //-------------------------------------------------------//
@@ -8,15 +9,15 @@
     // razem z przyciskami edycji i usuniecia produktu
     //
     function listaProduktow() {
-
         include('cfg.php');
-        $query = " SELECT * FROM produkty ";
+
+        $query = "SELECT * FROM produkty";
         $result = mysqli_query($link, $query);
         
         while( $row = mysqli_fetch_array($result) ) {
             $id = $row['id'];
-            $name = htmlspecialchars($row['nazwa']);
-            $desc = htmlspecialchars($row['opis']);
+            $name = $row['nazwa'];
+            $desc = $row['opis'];
             $date_start = $row['data_utworzenia'];
             $date_mod = $row['data_modyfikacji'];
             $date_end = $row['data_konca'];
@@ -24,9 +25,9 @@
             $tax = $row['podatek_vat'];
             $amount = $row['ilosc'];
             $status = $row['status'];
-            $category = htmlspecialchars($row['kategoria']);
-            $dimensions = htmlspecialchars($row['gabaryt']);
-            $img = htmlspecialchars($row['zdjecie']);
+            $category = $row['kategoria'];
+            $dimensions = $row['gabaryt'];
+            $img = $row['zdjecie'];
 
             $table =
             "
@@ -99,18 +100,18 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class='pro-td'>".$id."</td>
-                    <td class='pro-td'>".$name."</td>
-                    <td class='pro-td'>".$desc."</td>
-                    <td class='pro-td'>".$date_start."</td>
-                    <td class='pro-td'>".$date_mod."</td>
-                    <td class='pro-td'>".$date_end."</td>
-                    <td class='pro-td'>".$price."</td>
-                    <td class='pro-td'>".$tax."</td>
-                    <td class='pro-td'>".$amount."</td>
-                    <td class='pro-td'>".$status."</td>
-                    <td class='pro-td'>".$category."</td>
-                    <td class='pro-td'>".$dimensions."</td>
+                    <td class='pro-td'>$id</td>
+                    <td class='pro-td'>$name</td>
+                    <td class='pro-td'>$desc</td>
+                    <td class='pro-td'>$date_start</td>
+                    <td class='pro-td'>$date_mod</td>
+                    <td class='pro-td'>$date_end</td>
+                    <td class='pro-td'>$price</td>
+                    <td class='pro-td'>$tax</td>
+                    <td class='pro-td'>$amount</td>
+                    <td class='pro-td'>$status</td>
+                    <td class='pro-td'>$category</td>
+                    <td class='pro-td'>$dimensions</td>
                     <td class='pro-td' style='width: 106px;'>
                         <img class='img-product' src=".$img.">
                         </td>
@@ -119,17 +120,17 @@
 
             <div style='display: flex;'>
             <form method='post'>
-                <input type='hidden' name='idProduct' value='".$id."'/>
-                <input type='hidden' name='nameProduct' value='".$name."'/>
-                <input type='hidden' name='descProduct' value='".$desc."'/>
-                <input type='hidden' name='dateStart' value='".$date_start."'/>
-                <input type='hidden' name='dateEnd' value='".$date_end."'/>
-                <input type='hidden' name='priceProduct' value='".$price."'/>
-                <input type='hidden' name='taxProduct' value='".$tax."'/>
-                <input type='hidden' name='amountProduct' value='".$amount."'/>
-                <input type='hidden' name='statusProduct' value='".$status."'/>
-                <input type='hidden' name='categoryProduct' value='".$category."'/>
-                <input type='hidden' name='dimensionsProduct' value='".$dimensions."'/>
+                <input type='hidden' name='idProduct' value=$id >
+                <input type='hidden' name='nameProduct' value=$name />
+                <input type='hidden' name='descProduct' value=$desc />
+                <input type='hidden' name='dateStart' value=$date_start />
+                <input type='hidden' name='dateEnd' value=$date_end />
+                <input type='hidden' name='priceProduct' value=$price />
+                <input type='hidden' name='taxProduct' value=$tax />
+                <input type='hidden' name='amountProduct' value=$amount />
+                <input type='hidden' name='statusProduct' value=$status />
+                <input type='hidden' name='categoryProduct' value=$category />
+                <input type='hidden' name='dimensionsProduct' value=$dimensions />
                 <input type='hidden' name='imgProduct' value='".$img."'/>
                 <button class='cms-button-table' type='submit'>
                     Edytuj produkt
@@ -137,7 +138,7 @@
             </form>
 
             <form method='post'>
-                <input type='hidden' name='idProductToDelete' value='".$id."'/>
+                <input type='hidden' name='idProductToDelete' value=$id />
                 <button class='cms-button-table' type='submit' name='delete' >
                     Usuń produkt
                 </button>
@@ -149,7 +150,7 @@
         }
     }
 
-    //------------------------------------------------------//
+        //------------------------------------------------------//
     // Funkcja zwracajaca formularz dodania nowego produktu //
     //------------------------------------------------------//
     //
@@ -408,13 +409,13 @@
     function queryInsertProduct() {
         include('cfg.php');
 
-        $name = $_POST['insertProductName'];
-        $desc = $_POST['insertProductDesc'];
+        $name = htmlspecialchars($_POST['insertProductName']);
+        $desc = htmlspecialchars($_POST['insertProductDesc']);
         $date_start = date("Y-m-d");
-        $date_end = $_POST['insertProductDateEnd'];
-        $price = $_POST['insertProductNetto'];
-        $tax = $_POST['insertProductTax'];
-        $amount = $_POST['insertProductAmount'];
+        $date_end = htmlspecialchars($_POST['insertProductDateEnd']);
+        $price = htmlspecialchars($_POST['insertProductNetto']);
+        $tax = htmlspecialchars($_POST['insertProductTax']);
+        $amount = htmlspecialchars($_POST['insertProductAmount']);
 
         $status = 0;
         $time1 = strtotime($date_start);
@@ -423,14 +424,12 @@
             $status = 1;
         }
 
-        $category = $_POST['insertProductCategory'];
-        $dimensions = $_POST['insertProductDimensions'];
-        $img = $_POST['insertProductImg'];
+        $category = htmlspecialchars($_POST['insertProductCategory']);
+        $dimensions = htmlspecialchars($_POST['insertProductDimensions']);
+        $img = htmlspecialchars($_POST['insertProductImg']);
 
         $query = "INSERT INTO produkty (nazwa, opis, data_utworzenia, data_konca, cena_netto, podatek_vat, ilosc, `status`, kategoria, gabaryt, zdjecie)
-                  VALUES ('".htmlspecialchars($name)."', '".htmlspecialchars($desc)."', '".$date_start."', 
-                  '".htmlspecialchars($date_end)."', '".htmlspecialchars($price)."', '".htmlspecialchars($tax)."', 
-                  '".htmlspecialchars($amount)."', '".$status."', '".htmlspecialchars($category)."', '".htmlspecialchars($dimensions)."', '".htmlspecialchars($img)."')";
+                  VALUES ($name, $desc, '".$date_start."', '".$date_end."', $price, $tax, $amount, $status, $category, $dimensions, '$img')";
         $result = mysqli_query($link, $query);
 
         return $result;
@@ -447,15 +446,15 @@
     function queryUpdateProducts() {
         include('cfg.php');
         
-        $id = $_POST['updateId'];
-        $name = $_POST['updateName'];
-        $desc = $_POST['updateDesc'];
+        $id = htmlspecialchars($_POST['updateId']);
+        $name = htmlspecialchars($_POST['updateName']);
+        $desc = htmlspecialchars($_POST['updateDesc']);
         $date_start = $_POST['updateDateStart'];
         $date_mod = date("Y-m-d H:i:s");
         $date_end = $_POST['updateDateEnd'];
-        $price = $_POST['updatePrice'];
-        $tax = $_POST['updateTax'];
-        $amount = $_POST['updateAmount'];
+        $price = htmlspecialchars($_POST['updatePrice']);
+        $tax = htmlspecialchars($_POST['updateTax']);
+        $amount = htmlspecialchars($_POST['updateAmount']);
         
         $status = 0;
         $time1 = strtotime($date_start);
@@ -464,18 +463,15 @@
             $status = 1;
         }
 
-        $category = $_POST['updateCategory'];
-        $dimensions = $_POST['updateDimensions'];
-        $img = $_POST['updateImg'];
+        $category = htmlspecialchars($_POST['updateCategory']);
+        $dimensions = htmlspecialchars($_POST['updateDimensions']);
+        $img = htmlspecialchars($_POST['updateImg']);
 
 
-        $query = "UPDATE produkty SET nazwa='".htmlspecialchars($name)."', opis='".htmlspecialchars($desc)."', 
-                                        data_modyfikacji='".$date_mod."', data_konca='".$date_end."',
-                                        cena_netto='".htmlspecialchars($price)."', podatek_vat='".htmlspecialchars($tax)."', 
-                                        ilosc='".htmlspecialchars($amount)."', `status`='".htmlspecialchars($status)."', 
-                                        kategoria='".htmlspecialchars($category)."', gabaryt='".htmlspecialchars($dimensions)."',
-                                        zdjecie='".htmlspecialchars($img)."' 
-                                        WHERE id=".$id." LIMIT 1";
+        $query = "UPDATE produkty SET nazwa='$name', opis='$desc', data_modyfikacji='".$date_mod."', data_konca='".$date_end."',
+                                      cena_netto=$price, podatek_vat=$tax, ilosc=$amount, `status`=$status, kategoria=$category,
+                                      gabaryt=$dimensions, zdjecie='$img'
+                                      WHERE id=$id LIMIT 1";
         $result = mysqli_query($link, $query);
 
         return $result;
@@ -508,6 +504,9 @@
     // Funkcja wyswietla panel zarządzania produktami (liste prodoktow, edycje, dodanie nowego produktu, usunięcia)
     //
     function panelProduktow(){
+
+        $location = "http://localhost/projekt/?idp=1002";
+
         if($_SESSION['loggedIn'] == 1) {
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -515,24 +514,16 @@
                 if(isset($_POST['updateId'])) {
                     $result = queryUpdateProducts();
                     if ($result == 1){
-                        ?>
-                        <div class="center-message">
-                        <?php
-
-                        echo("Pomyślnie zmieniono produkt");
-
-                        ?>
-                        <?php
+                        echo "<script>";
+                        echo 'alert("Edytowano produkt.");';
+                        echo "window.location.href = `$location`;";
+                        echo "</script>";
                     }
                     else {
-                        ?>
-                        <div class="center-message">
-                        <?php
-
-                        echo("Niepowodzenie podczas edycji produktu");
-
-                        ?>
-                        <?php
+                        echo "<script>";
+                        echo 'alert("Niepowodzenie podczas edytowania produktu.");';
+                        echo "window.location.href = `$location`;";
+                        echo "</script>";
                     }
                     exit;
                 }
@@ -540,24 +531,17 @@
                 if(isset($_POST['insertProductName'])) {
                     $result = queryInsertProduct();
                     if ($result == 1){
-                        ?>
-                        <div class="center-message">
-                        <?php
-
-                        echo("Pomyślnie dodano produkt");
-
-                        ?>
-                        <?php
+                        echo "<script>";
+                        echo 'alert("Dodano produkt.");';
+                        echo "window.location.href = `$location`;";
+                        echo "</script>";
                     }
                     else {
-                        ?>
-                        <div class="center-message">
-                        <?php
 
-                        echo("Niepowodzenie podczas dodawania produktu");
-
-                        ?>
-                        <?php
+                        echo "<script>";
+                        echo 'alert("Niepowodzenie podczas dodawania produktu.");';
+                        echo "window.location.href = `$location`;";
+                        echo "</script>";
                     }
                     exit;
                     }
@@ -565,24 +549,16 @@
                     if(isset($_POST['idProductToDelete'])) {
                         $result = queryDeleteProduct();
                         if ($result == 1){
-                            ?>
-                            <div class="center-message">
-                            <?php
-    
-                            echo("Pomyślnie usunięto produkt");
-    
-                            ?>
-                            <?php
+                            echo "<script>";
+                            echo 'alert("Usunięto produkt.");';
+                            echo "window.location.href = `$location`;";
+                            echo "</script>";
                         }
                         else {
-                            ?>
-                            <div class="center-message">
-                            <?php
-    
-                            echo("Niepowodzenie podczas usuwania produktu");
-    
-                            ?>
-                            <?php
+                            echo "<script>";
+                            echo 'alert("Niepowodzenie podczas usuwania produktu.");';
+                            echo "window.location.href = `$location`;";
+                            echo "</script>";
                         }
                         exit;
                     }
@@ -597,14 +573,10 @@
 
         }
         else {
-            ?>
-            <div class="center-message">
-            <?php
-
-            echo("Dostęp tylko dla administratora");
-
-            ?>
-            <?php
+            echo "<script>";
+            echo 'alert("Widok tylko dla administratora.");';
+            echo "window.location.href = `$location`;";
+            echo "</script>";
         }
     }
 

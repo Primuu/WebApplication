@@ -1,5 +1,6 @@
 <?php
 
+
     //----------------------------------------//
     // Funkcja pokazujaca zawartosc podstrony //
     //----------------------------------------//
@@ -9,24 +10,29 @@
     //
     function PokazPodstrone(mysqli $link, $id)
     {
+        // Przypisanie id strony, ktora ma zostac wyswietlona
         $id_clear = htmlspecialchars($id);
 
-        $query = "SELECT * FROM page_list WHERE id='$id_clear' LIMIT 1";
+        // Stworzenie i wyslanie zapytania o szczegoly strony do wyswietlenia
+        $query = "SELECT * FROM page_list WHERE id=$id_clear LIMIT 1";
         $result = mysqli_query($link, $query);
         $row = mysqli_fetch_array($result);
 
+        // Jesli strona istnieje, zawartosc jest dekodowana
         if(empty($row['id']))
         {
             $web = '[nie_znaleziono_strony]';
         }
         else
         {
-            $web = $row['page_content'];
+            $web = htmlspecialchars_decode($row['page_content']);
         }
 
+        // Zawartosc strony jest wyswietlana
         echo $web;
     }
 
+    
     //------------------------------------//
     // Funkcja pokazujaca tytul podstrony //
     //------------------------------------//
@@ -36,12 +42,15 @@
     //
     function PokazTytul(mysqli $link, $id)
     {
+        // Przypisanie id strony, ktorej tytul ma zostac wyswietlony
         $id_clear = htmlspecialchars($id);
 
-        $query = "SELECT * FROM page_list WHERE id='$id_clear' LIMIT 1";
+        // Stworzenie i wyslanie zapytania o szczegoly strony do wyswietlenia
+        $query = "SELECT * FROM page_list WHERE id=$id_clear LIMIT 1";
         $result = mysqli_query($link, $query);
         $row = mysqli_fetch_array($result);
 
+        // Jesli strona istnieje, zawartosc jest przypisywana
         if(empty($row['id']))
         {
             $title = '[nie_znaleziono_strony]';
@@ -51,6 +60,7 @@
             $title = $row['page_title'];
         }
 
+        // Tytul jest zwracany
         return $title;
     }
     

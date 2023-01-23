@@ -1,6 +1,8 @@
 <?php
 
+    //Start sesji
     session_start();
+
     // Wywietlenie bledow oraz ostrzezen
     error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
 
@@ -30,6 +32,7 @@
     <head>
         <title>
             <?php
+            // Wyswietlenie tytulu w karcie przegladarki
             echo("$title");
             ?>
         </title>
@@ -66,6 +69,7 @@
 
     <?php
 
+        // Wyswietlenie zawrtosci podstrony 
         PokazPodstrone($link, $pageId);
         
         // Wyswietlenie formularza logowania na stronie glownej
