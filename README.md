@@ -2,7 +2,7 @@
 ## Fifth semester subject:
 ### Basics of html, css, php
 ### The application is a simple website containing, among other things, a shop and its own cms connected to a local database
-## Sample views
+## Sample views (page dealing with the history of spaceflight)
 <p align="center">
   <br>
   Main View
