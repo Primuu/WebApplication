@@ -316,8 +316,8 @@ function showCart() {
                 <td class='shop-list-td' style='width: 220px;'>
                     <form method='post'>
                         <div style='text-align: center;'>
-                            <input type='hidden' value=$product_id name='itemIdDelete'/>
-                            <input type='hidden' value=$amount 'name='itemAmountDelete'/>
+                            <input type='hidden' value='".$product_id."' name='itemIdDelete'/>
+                            <input type='hidden' value='".$amount." 'name='itemAmountDelete'/>
                             <button class='cms-button' type='submit'>
                                 Odejmij z koszyka
                             </button>
